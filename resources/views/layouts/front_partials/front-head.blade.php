@@ -5,7 +5,6 @@
 
     <!-- TITLE -->
     <title>SURVIVE-MEDIA</title>
-
     <link rel="icon" type="image/ico" href="{{ url('logo/Logoss.svg') }}" />
 
     <!-- FONTS -->
@@ -22,3 +21,8 @@
     <!-- STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('main-files/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('main-files/css/style.css') }}">
+    <style>
+        .top-bar{
+            background-color:  #FF924F !important;
+        }
+    </style>

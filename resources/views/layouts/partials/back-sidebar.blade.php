@@ -4,7 +4,7 @@
         <!-- .Dashboard -->
         <li>
             <a href="javascript:void(0)"><i class="ti-layout-grid2"></i></a>
-            <div class="sidebarmenu">
+            <div class="sidebarmenu" style="display: block">
                 <!-- Left navbar-header -->
                 <h3 class="menu-title">Dashboard</h3>
                 <div class="searchable-menu">

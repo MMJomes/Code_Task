@@ -14,8 +14,12 @@
             </ul> <!-- .top-bar-menu -->
 
             <ul class="list-inline pull-right top-bar-menu">
-                <li><a href="#">Welcome</a></li>
-                <li><a href="#">Login</a></li>
+                @if (auth()->user())
+                <li><a href="{{ route('backend.dashboard.index') }}" target="_blank">&nbsp;Dashboard&nbsp;</a></li>
+                @else
+
+                <li><a href="{{ route('login') }}" target="_blank">&nbsp;Login &nbsp;</a></li>
+                @endif
                 <li><a href="#">Sitemap</a></li>
             </ul> <!-- .top-bar-menu -->
         </div> <!-- .container -->
