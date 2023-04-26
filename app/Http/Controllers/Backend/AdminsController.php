@@ -8,6 +8,7 @@ use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
 use App\Repositories\Backend\Interf\AdminRepository;
 use App\Repositories\Backend\Interf\RoleRepository;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class AdminsController extends Controller

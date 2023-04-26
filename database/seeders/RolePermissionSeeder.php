@@ -48,6 +48,16 @@ class RolePermissionSeeder extends Seeder
                     'admin.delete',
                 ]
             ],
+            [
+                'group_name' => 'Banner',
+                'permissions' => [
+                    'banner.create',
+                    'banner.view',
+                    'banner.edit',
+                    'banner.delete',
+                    'banner.mass_destroy'
+                ]
+            ],
         ];
 
 
