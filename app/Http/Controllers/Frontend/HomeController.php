@@ -3,18 +3,27 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
+use App\Repositories\Backend\Interf\BannerRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{private BannerRepository $repository;
+    public function __construct(BannerRepository   $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
-        return view('page.index');
+        $banners = $this->repository->getall();
+        $bannerfirstid = Banner::first();
+        if ($bannerfirstid) {
+            $bannerfirstid = $bannerfirstid->id;
+        } else {
+            $bannerfirstid = 1;
+        }
+        return view('page.index',compact('banners','bannerfirstid'));
     }
     /**
      * Show the form for creating a new resource.

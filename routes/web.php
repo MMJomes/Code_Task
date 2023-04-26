@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/frontend', function () {
-    return view('page.index');
-});
+// Route::get('/frontend', function () {
+//     return view('page.index');
+// });
 
 
 Route::prefix('admin')->group(function () {
@@ -31,10 +31,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::namespace('App\Http\Controllers\Backend')->middleware(['auth'])->prefix('admin')->as('backend.')->group(function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
-
     Route::resource('roles', RolesController::class);
 
     Route::resource('admins', AdminsController::class);
+    Route::resource('banner',BannerController::class);
+
 });
 
 

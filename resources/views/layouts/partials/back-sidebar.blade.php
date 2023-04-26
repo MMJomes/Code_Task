@@ -15,6 +15,9 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li><a href="{{ route('backend.dashboard.index') }}">Default </a></li>
+                    @can('banner.view')
+                        <li><a href="{{ route('backend.banner.index') }}"> <i class="fa fa-image"></i> Banner </a></li>
+                    @endcan
                 </ul>
                 <!-- Left navbar-header end -->
             </div>

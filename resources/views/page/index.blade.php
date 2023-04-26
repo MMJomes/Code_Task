@@ -1,58 +1,104 @@
 @extends('layouts.front_end')
 @section('content')
-    <section class="hero-area">
-        <div id="corporex-slider" class="corporex-slider carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#corporex-slider" data-slide-to="0" class="active"></li>
-                <li data-target="#corporex-slider" data-slide-to="1"></li>
-            </ol> <!-- .carousel-indicators -->
+    {{-- @if (count($banners) > 0)
+        <section class="hero-area">
+            <div id="corporex-slider" class="corporex-slider carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @if ($bannerfirstid)
+                        @foreach ($banners as $banner)
+                            @if ($banner->id == $bannerfirstid)
+                                <li data-target="#corporex-slider" data-slide-to="0" class="active"></li>
+                            @else
+                                <li data-target="#corporex-slider" data-slide-to="1"></li>
+                            @endif
+                        @endforeach
+                    @else
+                        <li data-target="#corporex-slider" data-slide-to="0" class="active"></li>
+                    @endif
+                </ol> <!-- .carousel-indicators -->
 
-            <div class="carousel-inner" role="listbox">
-                <div class="item caption-left active">
-                    <img class="slider-bg img-responsive" src="http://via.placeholder.com/1920x720" alt="slider image 01">
-                    <div class="container">
+                <div class="carousel-inner" role="listbox">
+                    @foreach ($banners as $banner)
+                        @if ($banner->id == $bannerfirstid)
+                            <div class="item caption-left active">
+                            @else
+                                <div class="item caption-left">
+                        @endif
+                        <img class="slider-bg img-responsive"
+                            src="{{ url($banner->image ?? 'http://via.placeholder.com/1920x720') }}" alt="slider "
+                            style="width: 100%; object-fit: fill">
+                        <div class="container">
 
-                        <div class="carousel-caption">
-                            <h1 class="h1-extra"><span>The Corporex</span>The Real Corporate Experience</h1>
-                            <p class="lead">
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <a class="btn btn-main" href="#">learn more</a>
-                        </div> <!-- .carousel-caption -->
-                    </div> <!-- .container -->
+                            <div class="carousel-caption">
+                                <h1 class="h1-extra"><span>SURVIVE-MEDIA</span>{{ $banner->title }}</h1>
+                                <p class="lead">
+                                    {!! $banner->description !!}
+                                </p>
+                                @if ($banner->link)
+                                    <a class="btn btn-main" href="{{ url($banner->link) }}" target="_blank">learn more</a>
+                                @else
+                                    <a class="btn btn-main" href="">learn more</a>
+                                @endif
+                            </div> <!-- .carousel-caption -->
+                        </div> <!-- .container -->
                 </div> <!-- .item -->
-                <div class="item caption-right">
-                    <img class="slider-bg img-responsive" src="http://via.placeholder.com/1920x720" alt="slider image 02">
-                    <div class="container">
+        @endforeach
+        </div> <!-- .carousel-inner -->
 
-                        <div class="carousel-caption">
-                            <h1 class="h1-extra"><span>corporex Theme</span>Discover the Excellence</h1>
-                            <p class="lead">
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <a class="btn btn-main" href="#">learn more</a>
-                        </div> <!-- .carousel-caption -->
-                    </div> <!-- .container -->
-                </div> <!-- .item -->
-            </div> <!-- .carousel-inner -->
+        <!-- Controls -->
+        <a class="left carousel-control" href="#corporex-slider" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a> <!-- .carousel-control -->
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#corporex-slider" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a> <!-- .carousel-control -->
-
-            <a class="right carousel-control" href="#corporex-slider" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a> <!-- .carousel-control -->
+        <a class="right carousel-control" href="#corporex-slider" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a> <!-- .carousel-control -->
 
         </div> <!-- .carousel -->
-    </section> <!-- .hero-area -->
+        </section> <!-- .hero-area -->
+        @else
+        <section class="hero-area">
+            <div id="corporex-slider" class="corporex-slider carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#corporex-slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#corporex-slider" data-slide-to="1"></li>
+                </ol> <!-- .carousel-indicators -->
 
-    <section class="intro-section section-block">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item caption-left active">
+                        <img class="slider-bg img-responsive" src="http://via.placeholder.com/1920x720" alt="slider image 01">
+                        <div class="container">
+
+                            <div class="carousel-caption">
+                                <h1 class="h1-extra"><span>The Corporex</span>The Real Corporate Experience</h1>
+                                <p class="lead">
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur.
+                                </p>
+                                <a class="btn btn-main" href="#">learn more</a>
+                            </div> <!-- .carousel-caption -->
+                        </div> <!-- .container -->
+                    </div> <!-- .item -->
+                </div> <!-- .carousel-inner -->
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#corporex-slider" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a> <!-- .carousel-control -->
+
+                <a class="right carousel-control" href="#corporex-slider" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a> <!-- .carousel-control -->
+
+            </div> <!-- .carousel -->
+        </section> <!-- .hero-area -->
+    @endif --}}
+
+    <section class="intro-section section-block" id="section_2">
         <div class="container">
             <div class="title-block">
                 <h2>Welcome to Corporex</h2>
@@ -93,7 +139,7 @@
         </div> <!-- .container -->
     </section> <!-- .intro-section -->
 
-    <section class="about-section section-block">
+    <section class="about-section section-block" id="section_3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 img-block">
@@ -118,7 +164,7 @@
         </div> <!-- .container -->
     </section> <!-- .about-section -->
 
-    <section class="features-section section-block">
+    <section class="features-section section-block"id="section_4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -176,7 +222,7 @@
         </div> <!-- .container -->
     </section> <!-- .features-section -->
 
-    <section class="testimonial-section section-block">
+    <section class="testimonial-section section-block"id="section_5">
         <div class="container">
             <div class="title-block white">
                 <h2>What people say</h2>
@@ -250,7 +296,7 @@
             </div> <!-- .row -->
         </div> <!-- .container -->
     </section> <!-- .testimonial-section -->
-    <section class="blog-section section-block">
+    <section class="blog-section section-block"id="section_6">
         <div class="container">
             <div class="title-block">
                 <h2>Latest News</h2>
